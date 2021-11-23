@@ -18,7 +18,6 @@ public class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeV
     private ArrayList<EpisodeModel> list = new ArrayList<>();
     private OnItemClickListener listener;
 
-    @SuppressLint("NotifyDataSetChanged")
     public void addEpisode(List<EpisodeModel> list) {
         this.list.addAll(list);
         notifyDataSetChanged();

@@ -18,7 +18,6 @@ public class LocationAdapter extends RecyclerView.Adapter<LocationAdapter.Locati
     private ArrayList<LocationModel> list = new ArrayList<>();
     private OnItemClickListener listener;
 
-    @SuppressLint("NotifyDataSetChanged")
     public void addLocation(List<LocationModel> list) {
         this.list.addAll(list);
         notifyDataSetChanged();

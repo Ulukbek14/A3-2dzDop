@@ -22,7 +22,6 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
     private ArrayList<CharacterModel> list = new ArrayList<>();
     private OnItemClickListener listener;
 
-    @SuppressLint("NotifyDataSetChanged")
     public void addCharacter(List<CharacterModel> list) {
         this.list.addAll(list);
         notifyDataSetChanged();

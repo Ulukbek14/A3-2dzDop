@@ -13,9 +13,6 @@
         <action
             android:id="@+id/action_navigation_characters_to_detailFragment"
             app:destination="@id/detailFragment" />
-        <action
-            android:id="@+id/action_navigation_characters_to_dialogFragment"
-            app:destination="@id/dialogFragment" />
     </fragment>
     <fragment
         android:id="@+id/navigation_episode"
@@ -58,15 +55,6 @@
         android:name="com.example.a3_2dzdop.ui.fragment.location.detail.LocationDetailFragment"
         android:label="fragment_location_detail"
         tools:layout="@layout/fragment_location_detail" >
-        <argument
-            android:name="id"
-            app:argType="integer" />
-    </fragment>
-    <fragment
-        android:id="@+id/dialogFragment"
-        android:name="com.example.a3_2dzdop.ui.fragment.DialogCharacterFragment"
-        android:label=""
-        tools:layout="@layout/fragment_dialog_character" >
         <argument
             android:name="id"
             app:argType="integer" />
