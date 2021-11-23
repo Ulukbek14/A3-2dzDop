@@ -13,14 +13,13 @@ import com.example.a3_2dzdop.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
 
-    private ActivityMainBinding mainBinding;
+    private ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mainBinding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(mainBinding.getRoot());
-
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
         setupNavigation();
     }
 
@@ -29,14 +28,13 @@ public class MainActivity extends AppCompatActivity {
                 (NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment);
         NavController navController = navHostFragment.getNavController();
 
-        AppBarConfiguration appBarConfiguration =
-                new AppBarConfiguration.Builder(
-                        R.id.navigation_character,
-                        R.id.navigation_episode,
-                        R.id.navigation_location)
-                        .build();
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
+                R.id.navigation_characters,
+                R.id.navigation_episode,
+                R.id.navigation_location
+        ).build();
 
-        NavigationUI.setupWithNavController(mainBinding.toolbar, navController, appBarConfiguration);
-        NavigationUI.setupWithNavController(mainBinding.bottomNavigation, navController);
+        NavigationUI.setupWithNavController(binding.toolbar, navController, appBarConfiguration);
+        NavigationUI.setupWithNavController(binding.bottomNavigation, navController);
     }
 }

@@ -17,6 +17,7 @@ public class CharacterViewModel extends ViewModel {
     public LiveData<RickAndMortyResponse<CharacterModel>> fetchCharacter(){
 
         MutableLiveData<RickAndMortyResponse<CharacterModel>> data = new MutableLiveData<>();
+
         App.characterApiService.fetchCharacters().enqueue(new Callback<RickAndMortyResponse<CharacterModel>>() {
             @Override
             public void onResponse(Call<RickAndMortyResponse<CharacterModel>> call, Response<RickAndMortyResponse<CharacterModel>> response) {
@@ -28,6 +29,6 @@ public class CharacterViewModel extends ViewModel {
                 data.setValue(null);
             }
         });
-        return  data;
+        return data;
     }
 }

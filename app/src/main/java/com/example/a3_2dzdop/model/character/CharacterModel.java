@@ -6,15 +6,53 @@ public class CharacterModel {
 
     @SerializedName("id")
     private int id;
-
     @SerializedName("name")
     private String name;
-
     @SerializedName("image")
     private String image;
-
     @SerializedName("status")
     private String status;
+    @SerializedName("species")
+    private String species;
+    @SerializedName("gender")
+    private String gender;
+    @SerializedName("url")
+    private String url;
+
+    public String getSpecies() {
+        return species;
+    }
+
+    public void setSpecies(String species) {
+        this.species = species;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
+
+    @SerializedName("created")
+    private String created;
 
 
     public String getStatus() {

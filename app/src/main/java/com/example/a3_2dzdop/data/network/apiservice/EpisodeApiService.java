@@ -13,7 +13,7 @@ public interface EpisodeApiService {
     Call<RickAndMortyResponse<EpisodeModel>> fetchEpisodes();
 
     @GET("/api/episode/{id}")
-    Call<RickAndMortyResponse<EpisodeModel>> fetchEpisode(
+    Call<EpisodeModel> fetchEpisode(
             @Path("id") int id
     );
 }

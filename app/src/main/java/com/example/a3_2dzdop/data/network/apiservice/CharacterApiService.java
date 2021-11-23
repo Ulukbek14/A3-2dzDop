@@ -13,7 +13,7 @@ public interface CharacterApiService {
     Call<RickAndMortyResponse<CharacterModel>> fetchCharacters();
 
     @GET("/api/character/{id}")
-    Call<RickAndMortyResponse<CharacterModel>> fetchCharacter(
+    Call<CharacterModel> fetchCharacter(
             @Path("id") int id
     );
 }

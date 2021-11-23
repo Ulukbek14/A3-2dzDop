@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.view.LayoutInflater;
@@ -18,32 +19,42 @@ import com.example.a3_2dzdop.ui.fragment.episode.EpisodeViewModel;
 
 public class LocationFragment extends Fragment {
 
-   private FragmentLocationBinding locationBinding;
-   private LocationViewModel locationViewModel;
-   private LocationAdapter locationAdapter = new LocationAdapter();
+    private FragmentLocationBinding locationBinding;
+    private LocationViewModel viewModel;
+    private LocationAdapter adapter = new LocationAdapter();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        locationBinding = FragmentLocationBinding.inflate(getLayoutInflater(), container, false);
+        locationBinding = FragmentLocationBinding.inflate(inflater, container, false);
         initialize();
+        setupObserves();
         setupLocation();
         return locationBinding.getRoot();
     }
 
-    private void initialize() {
-        locationViewModel = new ViewModelProvider(this).get(LocationViewModel.class);
-        setupLocationRecycler();
-    }
-
-    private void setupLocationRecycler() {
-        locationBinding.rvLocation.setLayoutManager(new LinearLayoutManager(getContext()));
-        locationBinding.rvLocation.setAdapter(locationAdapter);
-    }
-
     private void setupLocation() {
-        locationViewModel.fetchLocation().observe(getViewLifecycleOwner(), characters -> {
-            locationAdapter.addLocation(characters.getResults());
+        adapter.setOnItemClickListener(id -> {
+            Navigation
+                    .findNavController(requireView())
+                    .navigate(LocationFragmentDirections
+                            .actionNavigationLocationToLocationDetailFragment(id));
+        });
+    }
+
+    private void initialize() {
+        viewModel = new ViewModelProvider(this).get(LocationViewModel.class);
+        setupEpisodeRecycler();
+    }
+
+    private void setupEpisodeRecycler() {
+        locationBinding.rvLocation.setLayoutManager(new LinearLayoutManager(getContext()));
+        locationBinding.rvLocation.setAdapter(adapter);
+    }
+
+    private void setupObserves() {
+        viewModel.fetchLocation().observe(getViewLifecycleOwner(), episodes -> {
+            adapter.addLocation(episodes.getResults());
         });
     }
 }

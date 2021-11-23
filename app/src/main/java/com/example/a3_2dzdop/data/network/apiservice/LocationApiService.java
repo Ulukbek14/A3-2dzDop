@@ -9,11 +9,11 @@ import retrofit2.http.Path;
 
 public interface LocationApiService {
 
-    @GET("/api/episode/")
+    @GET("/api/location/")
     Call<RickAndMortyResponse<LocationModel>> fetchLocations();
 
-    @GET("/api/episode/{id}")
-    Call<RickAndMortyResponse<LocationModel>> fetchLocation(
+    @GET("/api/location/{id}")
+    Call<LocationModel> fetchLocation(
             @Path("id") int id
     );
 }

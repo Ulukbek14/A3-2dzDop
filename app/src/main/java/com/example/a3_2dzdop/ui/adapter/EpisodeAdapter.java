@@ -1,5 +1,6 @@
 package com.example.a3_2dzdop.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -15,7 +16,9 @@ import java.util.List;
 public class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeViewHolder> {
 
     private ArrayList<EpisodeModel> list = new ArrayList<>();
+    private OnItemClickListener listener;
 
+    @SuppressLint("NotifyDataSetChanged")
     public void addEpisode(List<EpisodeModel> list) {
         this.list.addAll(list);
         notifyDataSetChanged();
@@ -45,11 +48,20 @@ public class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeV
             super(binding.getRoot());
             this.binding = binding;
         }
-
-        public void episodeFilling(EpisodeModel episodeModel) {
-            binding.itemTvEpName.setText(episodeModel.getName());
-            binding.itemTvEpDate.setText(episodeModel.getAir_date());
-            binding.itemTvEpEpisode.setText(episodeModel.getEpisode());
+        public void episodeFilling(EpisodeModel itemEpisode) {
+            binding.itemTvEpisodeName.setText(itemEpisode.getName());
+            binding.itemTvEpisodeAirDate.setText(itemEpisode.getAir_date());
+            binding.itemTvEpisodeCharacters.setText(itemEpisode.getEpisode());
+            binding.getRoot().
+                    setOnClickListener(v ->
+                    listener.onItemClick(itemEpisode.getId()));
         }
+    }
+    public interface OnItemClickListener {
+        void onItemClick(int id);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.listener = listener;
     }
 }

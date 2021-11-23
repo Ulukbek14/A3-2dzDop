@@ -16,8 +16,9 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        characterApiService = new RetrofitClient().provideCharacterApiService();
-        episodeApiService = new RetrofitClient().provideEpisodeApiService();
-        locationApiService = new RetrofitClient().provideLocationApiService();
+        RetrofitClient retrofitClient = new RetrofitClient();
+        characterApiService = retrofitClient.provideCharacterApiService();
+        episodeApiService = retrofitClient.provideEpisodeApiService();
+        locationApiService = retrofitClient.provideLocationApiService();
     }
 }

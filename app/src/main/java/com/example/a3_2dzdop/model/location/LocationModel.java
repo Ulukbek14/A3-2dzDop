@@ -3,17 +3,35 @@ package com.example.a3_2dzdop.model.location;
 import com.google.gson.annotations.SerializedName;
 
 public class LocationModel {
+
     @SerializedName("id")
     private int id;
-
     @SerializedName("name")
     private String name;
-
     @SerializedName("type")
     private String type;
-
     @SerializedName("dimension")
     private String dimension;
+    @SerializedName("url")
+    private String url;
+    @SerializedName("created")
+    private String created;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public String getCreated() {
+        return created;
+    }
+
+    public void setCreated(String created) {
+        this.created = created;
+    }
 
     public int getId() {
         return id;

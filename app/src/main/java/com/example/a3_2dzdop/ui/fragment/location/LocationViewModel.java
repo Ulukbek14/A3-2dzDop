@@ -17,6 +17,7 @@ public class LocationViewModel extends ViewModel {
     public LiveData<RickAndMortyResponse<LocationModel>> fetchLocation() {
 
         MutableLiveData<RickAndMortyResponse<LocationModel>> data = new MutableLiveData<>();
+
         App.locationApiService.fetchLocations().enqueue(new Callback<RickAndMortyResponse<LocationModel>>() {
             @Override
             public void onResponse(Call<RickAndMortyResponse<LocationModel>> call, Response<RickAndMortyResponse<LocationModel>> response) {
