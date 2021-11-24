@@ -1,8 +1,7 @@
 package com.example.a3_2dzdop.ui.adapter;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
-import android.view.View;
+
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -12,7 +11,6 @@ import com.bumptech.glide.Glide;
 import com.example.a3_2dzdop.databinding.ItemCharacterBinding;
 import com.example.a3_2dzdop.model.character.CharacterModel;
 
-import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -71,7 +69,6 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
                         (characterModel.getId());
                 return false;
             });
-
         }
     }
 

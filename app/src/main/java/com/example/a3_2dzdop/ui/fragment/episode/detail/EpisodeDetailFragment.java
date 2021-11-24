@@ -29,19 +29,19 @@ public class EpisodeDetailFragment extends Fragment {
         return binding.getRoot();
     }
 
-    private void setupObservers() {
-        viewModel.episode.observe(getViewLifecycleOwner(),episode ->{
-            binding.detailTvName.setText(episode.getName());
-            binding.detailTvUrl.setText(episode.getUrl());
-            binding.detailTvCreated.setText(episode.getCreated());
-        } );
-    }
-
     private void initialize() {
         viewModel = new ViewModelProvider(this).get(EpisodeDetailViewModel.class);
     }
 
     private void setupRequest() {
         viewModel.fetchEpisode(EpisodeDetailFragmentArgs.fromBundle(getArguments()).getId());
+    }
+
+    private void setupObservers() {
+        viewModel.episode.observe(getViewLifecycleOwner(),episode ->{
+            binding.detailTvName.setText(episode.getName());
+            binding.detailTvUrl.setText(episode.getUrl());
+            binding.detailTvCreated.setText(episode.getCreated());
+        } );
     }
 }

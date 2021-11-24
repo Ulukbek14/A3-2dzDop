@@ -29,6 +29,14 @@ public class CharacterDetailFragment extends Fragment {
         return binding.getRoot();
     }
 
+    private void initialize() {
+        viewModel = new ViewModelProvider(this).get(CharacterDetailViewModel.class);
+    }
+
+    private void setupRequest() {
+        viewModel.fetchCharacter(CharacterDetailFragmentArgs.fromBundle(getArguments()).getId());
+    }
+
     private void setupCharacterDetail() {
         viewModel.character.observe(getViewLifecycleOwner(), character -> {
             Glide.with(binding.detailIv)
@@ -41,13 +49,5 @@ public class CharacterDetailFragment extends Fragment {
             binding.detailTvUrl.setText(character.getUrl());
             binding.detailTvCreated.setText(character.getCreated());
         });
-    }
-
-    private void setupRequest() {
-        viewModel.fetchCharacter(CharacterDetailFragmentArgs.fromBundle(getArguments()).getId());
-    }
-
-    private void initialize() {
-        viewModel = new ViewModelProvider(this).get(CharacterDetailViewModel.class);
     }
 }

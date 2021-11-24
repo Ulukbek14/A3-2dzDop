@@ -47,6 +47,7 @@ public class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeV
             super(binding.getRoot());
             this.binding = binding;
         }
+
         public void episodeFilling(EpisodeModel itemEpisode) {
             binding.itemTvEpisodeName.setText(itemEpisode.getName());
             binding.itemTvEpisodeAirDate.setText(itemEpisode.getAir_date());
@@ -56,6 +57,7 @@ public class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeV
                     listener.onItemClick(itemEpisode.getId()));
         }
     }
+
     public interface OnItemClickListener {
         void onItemClick(int id);
     }

@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.a3_2dzdop.R;
+import com.example.a3_2dzdop.base.BaseFragment;
 import com.example.a3_2dzdop.databinding.FragmentCharacterBinding;
 import com.example.a3_2dzdop.ui.adapter.CharacterAdapter;
 
@@ -31,6 +32,17 @@ public class CharacterFragment extends Fragment {
         return characterBinding.getRoot();
     }
 
+    private void initialize() {
+        viewModel = new ViewModelProvider(this).get(CharacterViewModel.class);
+        setupCharactersRecycler();
+    }
+
+    private void setupObservers() {
+        viewModel.fetchCharacter().observe(getViewLifecycleOwner(), characters -> {
+            characterAdapter.addCharacter(characters.getResults());
+        });
+    }
+
     private void setupCharacter() {
         characterAdapter.setOnItemClickListener(new CharacterAdapter.OnItemClickListener() {
             @Override
@@ -43,27 +55,12 @@ public class CharacterFragment extends Fragment {
 
             @Override
             public void onItemCharacterClick(int id) {
-                Navigation.
-                        findNavController(requireView()).
-                        navigate(CharacterFragmentDirections.
-                                actionNavigationCharactersToDialogFragment(id));
             }
         });
-    }
-
-    private void initialize() {
-        viewModel = new ViewModelProvider(this).get(CharacterViewModel.class);
-        setupCharactersRecycler();
     }
 
     private void setupCharactersRecycler() {
         characterBinding.rvCharacter.setLayoutManager(new LinearLayoutManager(getContext()));
         characterBinding.rvCharacter.setAdapter(characterAdapter);
-    }
-
-    private void setupObservers() {
-        viewModel.fetchCharacter().observe(getViewLifecycleOwner(), characters -> {
-            characterAdapter.addCharacter(characters.getResults());
-        });
     }
 }

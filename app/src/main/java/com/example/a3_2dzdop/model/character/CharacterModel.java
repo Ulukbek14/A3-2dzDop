@@ -2,6 +2,8 @@ package com.example.a3_2dzdop.model.character;
 
 import com.google.gson.annotations.SerializedName;
 
+import java.util.List;
+
 public class CharacterModel {
 
     @SerializedName("id")

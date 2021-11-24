@@ -2,7 +2,6 @@ package com.example.a3_2dzdop.ui.fragment.episode;
 
 import android.os.Bundle;
 
-import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,16 +10,11 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.example.a3_2dzdop.R;
-import com.example.a3_2dzdop.data.network.apiservice.EpisodeApiService;
-import com.example.a3_2dzdop.databinding.FragmentCharacterBinding;
+import com.example.a3_2dzdop.base.BaseFragment;
 import com.example.a3_2dzdop.databinding.FragmentEpisodeBinding;
-import com.example.a3_2dzdop.ui.adapter.CharacterAdapter;
 import com.example.a3_2dzdop.ui.adapter.EpisodeAdapter;
-import com.example.a3_2dzdop.ui.fragment.character.CharacterFragmentDirections;
-import com.example.a3_2dzdop.ui.fragment.character.CharacterViewModel;
 
-public class EpisodeFragment extends Fragment {
+public class EpisodeFragment extends BaseFragment {
 
     private FragmentEpisodeBinding episodeBinding;
     private EpisodeViewModel viewModel;
@@ -30,13 +24,10 @@ public class EpisodeFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         episodeBinding = FragmentEpisodeBinding.inflate(inflater, container, false);
-        initialize();
-        setupObserves();
-        setupEpisode();
         return episodeBinding.getRoot();
     }
 
-    private void setupEpisode() {
+    protected void setupEpisode() {
         adapter.setOnItemClickListener(id -> {
             Navigation
                     .findNavController(requireView())
@@ -46,7 +37,7 @@ public class EpisodeFragment extends Fragment {
         });
     }
     
-    private void initialize() {
+    protected void initialize() {
         viewModel = new ViewModelProvider(this).get(EpisodeViewModel.class);
         setupEpisodeRecycler();
     }
@@ -56,9 +47,10 @@ public class EpisodeFragment extends Fragment {
         episodeBinding.rvEpisode.setAdapter(adapter);
     }
 
-    private void setupObserves() {
+    @Override
+    protected void setupObservers() {
         viewModel.fetchEpisode().observe(getViewLifecycleOwner(), episodes ->{
-            adapter.addEpisode(episodes.getResults());
+           adapter.addEpisode(episodes.getResults());
         });
     }
 }

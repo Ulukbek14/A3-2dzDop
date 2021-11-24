@@ -12,12 +12,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.a3_2dzdop.R;
+import com.example.a3_2dzdop.base.BaseFragment;
 import com.example.a3_2dzdop.data.network.apiservice.LocationApiService;
 import com.example.a3_2dzdop.databinding.FragmentLocationBinding;
 import com.example.a3_2dzdop.ui.adapter.LocationAdapter;
 import com.example.a3_2dzdop.ui.fragment.episode.EpisodeViewModel;
 
-public class LocationFragment extends Fragment {
+public class LocationFragment extends BaseFragment {
 
     private FragmentLocationBinding locationBinding;
     private LocationViewModel viewModel;
@@ -33,16 +34,7 @@ public class LocationFragment extends Fragment {
         return locationBinding.getRoot();
     }
 
-    private void setupLocation() {
-        adapter.setOnItemClickListener(id -> {
-            Navigation
-                    .findNavController(requireView())
-                    .navigate(LocationFragmentDirections
-                            .actionNavigationLocationToLocationDetailFragment(id));
-        });
-    }
-
-    private void initialize() {
+    protected void initialize() {
         viewModel = new ViewModelProvider(this).get(LocationViewModel.class);
         setupEpisodeRecycler();
     }
@@ -52,9 +44,18 @@ public class LocationFragment extends Fragment {
         locationBinding.rvLocation.setAdapter(adapter);
     }
 
-    private void setupObserves() {
+    protected void setupObserves() {
         viewModel.fetchLocation().observe(getViewLifecycleOwner(), episodes -> {
             adapter.addLocation(episodes.getResults());
+        });
+    }
+
+    protected void setupLocation() {
+        adapter.setOnItemClickListener(id -> {
+            Navigation
+                    .findNavController(requireView())
+                    .navigate(LocationFragmentDirections
+                            .actionNavigationLocationToLocationDetailFragment(id));
         });
     }
 }
