@@ -1,16 +1,18 @@
 package com.example.a3_2dzdop.ui.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.a3_2dzdop.databinding.ItemCharacterBinding;
 import com.example.a3_2dzdop.model.character.CharacterModel;
-
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,15 +62,15 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
 
             binding.getRoot().
                     setOnClickListener(v ->
-                    listener.onItemClick
-                            (characterModel.getId()));
+                            listener.onItemClick
+                                    (characterModel.getId()));
 
             binding.getRoot().
                     setOnLongClickListener(v -> {
-                listener.onItemCharacterClick
-                        (characterModel.getId());
-                return false;
-            });
+                        listener.onItemCharacterClick
+                                (characterModel.getId());
+                        return false;
+                    });
         }
     }
 

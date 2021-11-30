@@ -14,40 +14,20 @@ import android.view.ViewGroup;
 import com.example.a3_2dzdop.R;
 import com.example.a3_2dzdop.base.BaseFragment;
 import com.example.a3_2dzdop.data.network.apiservice.LocationApiService;
+import com.example.a3_2dzdop.databinding.FragmentEpisodeDetailBinding;
 import com.example.a3_2dzdop.databinding.FragmentLocationBinding;
 import com.example.a3_2dzdop.ui.adapter.LocationAdapter;
 import com.example.a3_2dzdop.ui.fragment.episode.EpisodeViewModel;
 
-public class LocationFragment extends BaseFragment {
+public class LocationFragment extends BaseFragment<LocationViewModel, FragmentLocationBinding> {
 
-    private FragmentLocationBinding locationBinding;
-    private LocationViewModel viewModel;
     private LocationAdapter adapter = new LocationAdapter();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        locationBinding = FragmentLocationBinding.inflate(inflater, container, false);
-        initialize();
-        setupObserves();
-        setupLocation();
-        return locationBinding.getRoot();
-    }
-
-    protected void initialize() {
-        viewModel = new ViewModelProvider(this).get(LocationViewModel.class);
-        setupEpisodeRecycler();
-    }
-
-    private void setupEpisodeRecycler() {
-        locationBinding.rvLocation.setLayoutManager(new LinearLayoutManager(getContext()));
-        locationBinding.rvLocation.setAdapter(adapter);
-    }
-
-    protected void setupObserves() {
-        viewModel.fetchLocation().observe(getViewLifecycleOwner(), episodes -> {
-            adapter.addLocation(episodes.getResults());
-        });
+        binding = FragmentLocationBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     protected void setupLocation() {
@@ -57,5 +37,21 @@ public class LocationFragment extends BaseFragment {
                     .navigate(LocationFragmentDirections
                             .actionNavigationLocationToLocationDetailFragment(id));
         });
+    }
+
+    protected void initialize() {
+        viewModel = new ViewModelProvider(this).get(LocationViewModel.class);
+        setupEpisodeRecycler();
+    }
+
+    protected void setupObservers() {
+        viewModel.fetchLocation().observe(getViewLifecycleOwner(), episodes -> {
+            adapter.addLocation(episodes.getResults());
+        });
+    }
+
+    private void setupEpisodeRecycler() {
+        binding.rvLocation.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rvLocation.setAdapter(adapter);
     }
 }

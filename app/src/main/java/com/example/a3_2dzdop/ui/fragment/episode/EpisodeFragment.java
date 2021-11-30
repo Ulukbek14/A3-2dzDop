@@ -12,19 +12,18 @@ import android.view.ViewGroup;
 
 import com.example.a3_2dzdop.base.BaseFragment;
 import com.example.a3_2dzdop.databinding.FragmentEpisodeBinding;
+import com.example.a3_2dzdop.databinding.FragmentEpisodeDetailBinding;
 import com.example.a3_2dzdop.ui.adapter.EpisodeAdapter;
 
-public class EpisodeFragment extends BaseFragment {
+public class EpisodeFragment extends BaseFragment<EpisodeViewModel, FragmentEpisodeBinding> {
 
-    private FragmentEpisodeBinding episodeBinding;
-    private EpisodeViewModel viewModel;
     private EpisodeAdapter adapter = new EpisodeAdapter();
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        episodeBinding = FragmentEpisodeBinding.inflate(inflater, container, false);
-        return episodeBinding.getRoot();
+        binding = FragmentEpisodeBinding.inflate(inflater, container, false);
+        return binding.getRoot();
     }
 
     protected void setupEpisode() {
@@ -42,15 +41,15 @@ public class EpisodeFragment extends BaseFragment {
         setupEpisodeRecycler();
     }
 
-    private void setupEpisodeRecycler() {
-        episodeBinding.rvEpisode.setLayoutManager(new LinearLayoutManager(getContext()));
-        episodeBinding.rvEpisode.setAdapter(adapter);
-    }
-
     @Override
     protected void setupObservers() {
         viewModel.fetchEpisode().observe(getViewLifecycleOwner(), episodes ->{
            adapter.addEpisode(episodes.getResults());
         });
+    }
+
+    private void setupEpisodeRecycler() {
+        binding.rvEpisode.setLayoutManager(new LinearLayoutManager(getContext()));
+        binding.rvEpisode.setAdapter(adapter);
     }
 }

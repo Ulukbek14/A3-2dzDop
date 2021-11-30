@@ -5,30 +5,23 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.example.a3_2dzdop.App;
+import com.example.a3_2dzdop.base.BaseViewModel;
 import com.example.a3_2dzdop.data.network.dtos.RickAndMortyResponse;
+import com.example.a3_2dzdop.data.network.repository.CharacterRepository;
 import com.example.a3_2dzdop.model.character.CharacterModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class CharacterViewModel extends ViewModel {
+public class CharacterViewModel extends BaseViewModel {
 
-    public LiveData<RickAndMortyResponse<CharacterModel>> fetchCharacter(){
+    private CharacterRepository characterRepository = new CharacterRepository();
 
-        MutableLiveData<RickAndMortyResponse<CharacterModel>> data = new MutableLiveData<>();
-
-        App.characterApiService.fetchCharacters().enqueue(new Callback<RickAndMortyResponse<CharacterModel>>() {
-            @Override
-            public void onResponse(Call<RickAndMortyResponse<CharacterModel>> call, Response<RickAndMortyResponse<CharacterModel>> response) {
-                data.setValue(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<RickAndMortyResponse<CharacterModel>> call, Throwable t) {
-                data.setValue(null);
-            }
-        });
-        return data;
+    public LiveData<RickAndMortyResponse<CharacterModel>> fetchCharacter() {
+        return characterRepository.fetchCharacters();
     }
 }

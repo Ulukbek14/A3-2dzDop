@@ -5,6 +5,8 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.a3_2dzdop.databinding.ItemEpisodeBinding;
@@ -54,7 +56,7 @@ public class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeV
             binding.itemTvEpisodeCharacters.setText(itemEpisode.getEpisode());
             binding.getRoot().
                     setOnClickListener(v ->
-                    listener.onItemClick(itemEpisode.getId()));
+                            listener.onItemClick(itemEpisode.getId()));
         }
     }
 

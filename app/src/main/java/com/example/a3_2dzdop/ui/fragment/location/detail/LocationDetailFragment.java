@@ -10,36 +10,31 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.a3_2dzdop.R;
+import com.example.a3_2dzdop.base.BaseFragment;
 import com.example.a3_2dzdop.databinding.FragmentLocationDetailBinding;
 
-public class LocationDetailFragment extends Fragment {
-
-    private FragmentLocationDetailBinding binding;
-    private LocationDetailViewModel viewModel;
+public class LocationDetailFragment extends BaseFragment<LocationDetailViewModel, FragmentLocationDetailBinding> {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLocationDetailBinding.inflate(inflater, container, false);
-        initialize();
-        setupRequest();
-        setupObservers();
         return binding.getRoot();
     }
 
-    private void setupObservers() {
+    protected void initialize() {
+        viewModel = new ViewModelProvider(this).get(LocationDetailViewModel.class);
+    }
+
+    protected void setupRequest() {
+        viewModel.fetchEpisode(LocationDetailFragmentArgs.fromBundle(getArguments()).getId());
+    }
+
+    protected void setupObservers() {
         viewModel.location.observe(getViewLifecycleOwner(), location -> {
             binding.detailTvName.setText(location.getName());
             binding.detailTvUrl.setText(location.getUrl());
             binding.detailTvCreated.setText(location.getCreated());
         });
-    }
-
-    private void initialize() {
-        viewModel = new ViewModelProvider(this).get(LocationDetailViewModel.class);
-    }
-
-    private void setupRequest() {
-        viewModel.fetchEpisode(LocationDetailFragmentArgs.fromBundle(getArguments()).getId());
     }
 }

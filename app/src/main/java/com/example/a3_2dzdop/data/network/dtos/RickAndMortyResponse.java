@@ -1,6 +1,8 @@
 package com.example.a3_2dzdop.data.network.dtos;
 
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
 import java.util.List;
 
 public class RickAndMortyResponse<T> {
