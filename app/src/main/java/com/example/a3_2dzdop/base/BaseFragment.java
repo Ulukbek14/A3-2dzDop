@@ -19,25 +19,14 @@ public abstract class BaseFragment<ViewModel extends BaseViewModel, Binding exte
         initialize();
         setupRequest();
         setupObservers();
-        setupCharacter();
-        setupEpisode();
-        setupLocation();
+        setupNavigation();
     }
 
-    protected void initialize() {
-    }
+    protected void initialize(){}
 
-    protected void setupRequest() {}
+    protected void setupRequest(){}
 
-    protected void setupObservers(){
-    }
+    protected void setupObservers(){}
 
-    protected void setupCharacter(){
-    }
-
-    protected void setupEpisode(){
-    }
-
-    protected void setupLocation(){
-    }
+    protected void setupNavigation(){}
 }

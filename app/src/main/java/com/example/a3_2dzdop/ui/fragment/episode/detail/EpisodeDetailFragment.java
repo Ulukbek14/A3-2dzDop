@@ -15,7 +15,8 @@ import com.example.a3_2dzdop.base.BaseFragment;
 import com.example.a3_2dzdop.databinding.FragmentEpisodeBinding;
 import com.example.a3_2dzdop.databinding.FragmentEpisodeDetailBinding;
 
-public class EpisodeDetailFragment extends BaseFragment<EpisodeDetailViewModel, FragmentEpisodeDetailBinding> {
+public class EpisodeDetailFragment extends
+        BaseFragment<EpisodeDetailViewModel, FragmentEpisodeDetailBinding> {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

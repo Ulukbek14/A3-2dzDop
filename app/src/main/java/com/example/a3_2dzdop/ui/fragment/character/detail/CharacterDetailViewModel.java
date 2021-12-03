@@ -2,14 +2,10 @@ package com.example.a3_2dzdop.ui.fragment.character.detail;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
 
 import com.example.a3_2dzdop.App;
 import com.example.a3_2dzdop.base.BaseViewModel;
-import com.example.a3_2dzdop.data.network.dtos.RickAndMortyResponse;
-import com.example.a3_2dzdop.databinding.FragmentCharacterBinding;
-import com.example.a3_2dzdop.databinding.FragmentCharacterDetailBinding;
-import com.example.a3_2dzdop.model.character.CharacterModel;
+import com.example.a3_2dzdop.data.network.dtos.character.CharacterModel;
 
 import retrofit2.Call;
 import retrofit2.Callback;

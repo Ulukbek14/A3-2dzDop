@@ -1,7 +1,7 @@
 package com.example.a3_2dzdop.ui.adapter;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -10,19 +10,18 @@ import androidx.recyclerview.widget.ListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.a3_2dzdop.databinding.ItemEpisodeBinding;
-import com.example.a3_2dzdop.model.episode.EpisodeModel;
+import com.example.a3_2dzdop.data.network.dtos.episode.EpisodeModel;
+
+import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeViewHolder> {
+public class EpisodeAdapter extends ListAdapter<EpisodeModel, EpisodeAdapter.EpisodeViewHolder> {
 
-    private ArrayList<EpisodeModel> list = new ArrayList<>();
     private OnItemClickListener listener;
-
-    public void addEpisode(List<EpisodeModel> list) {
-        this.list.addAll(list);
-        notifyDataSetChanged();
+    public EpisodeAdapter() {
+        super(new EpisodeComparator());
     }
 
     @NonNull
@@ -34,29 +33,38 @@ public class EpisodeAdapter extends RecyclerView.Adapter<EpisodeAdapter.EpisodeV
 
     @Override
     public void onBindViewHolder(@NonNull EpisodeViewHolder holder, int position) {
-        holder.episodeFilling(list.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return list.size();
+        holder.episodeFilling(getItem(position));
     }
 
     public class EpisodeViewHolder extends RecyclerView.ViewHolder {
-        private ItemEpisodeBinding binding;
+
+        public void episodeFilling(EpisodeModel episodeModel) {
+            binding.itemTvEpisodeName.setText(episodeModel.getName());
+            binding.itemTvEpisodeAirDate.setText(episodeModel.getAir_date());
+            binding.itemTvEpisodeCharacters.setText(episodeModel.getEpisode());
+
+            binding.getRoot().setOnClickListener(v ->
+                    listener.onItemClick(episodeModel.getId()));
+        }
+
+        private final ItemEpisodeBinding binding;
 
         public EpisodeViewHolder(@NonNull ItemEpisodeBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
+    }
 
-        public void episodeFilling(EpisodeModel itemEpisode) {
-            binding.itemTvEpisodeName.setText(itemEpisode.getName());
-            binding.itemTvEpisodeAirDate.setText(itemEpisode.getAir_date());
-            binding.itemTvEpisodeCharacters.setText(itemEpisode.getEpisode());
-            binding.getRoot().
-                    setOnClickListener(v ->
-                            listener.onItemClick(itemEpisode.getId()));
+    public static class EpisodeComparator extends DiffUtil.ItemCallback<EpisodeModel> {
+
+        @Override
+        public boolean areItemsTheSame(@NonNull EpisodeModel oldItem, @NonNull EpisodeModel newItem) {
+            return oldItem.getId() == newItem.getId();
+        }
+
+        @Override
+        public boolean areContentsTheSame(@NonNull EpisodeModel oldItem, @NonNull EpisodeModel newItem) {
+            return oldItem.equals(newItem);
         }
     }
 

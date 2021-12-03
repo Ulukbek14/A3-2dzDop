@@ -22,79 +22,41 @@
         tools:src="@tools:sample/avatars"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_width="130dp"
-        android:layout_height="120dp"/>
-
-    <TextView
-        android:id="@+id/detail_tv_name"
-        android:text="Rick Sanchez"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        android:textStyle="bold"
-        app:layout_constraintTop_toBottomOf="@id/detail_iv"
-        android:layout_marginTop="10dp"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginStart="20dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_width="170dp"
+        android:layout_height="170dp"/>
 
     <TextView
         android:id="@+id/detail_tv_status"
-        android:text="Alive - Human"
+        tools:text="@tools:sample/last_names"
         android:textColor="@color/white"
-        android:textSize="20sp"
+        android:textSize="25sp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginTop="20dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginRight="140dp"
+        app:layout_constraintLeft_toRightOf="@id/detail_iv"
+        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
-        android:id="@+id/detail_tv_speciesText"
-        android:text="Last known location:"
-        android:textColor="#9F9E9E"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/detail_iv"
-        android:layout_marginTop="100dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="10dp"
+        android:text="-"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="15dp"
+        app:layout_constraintLeft_toRightOf="@id/detail_tv_status"
+        android:layout_marginLeft="7dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
     <TextView
         android:id="@+id/detail_tv_species"
-        android:text="Citadel of Ricks"
+        tools:text="@tools:sample/last_names"
         android:textColor="@color/white"
-        android:textSize="23sp"
-        app:layout_constraintTop_toBottomOf="@id/detail_tv_speciesText"
-        android:layout_marginTop="10dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/detail_tv_genderText"
-        android:text="First seen in:"
-        android:textColor="#9F9E9E"
-        android:textSize="20sp"
-        app:layout_constraintTop_toBottomOf="@id/detail_tv_species"
-        android:layout_marginTop="10dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="10dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-
-    <TextView
-        android:id="@+id/detail_tv_gender"
-        android:text="Pilot"
-        android:textColor="@color/white"
-        android:textSize="23sp"
-        app:layout_constraintTop_toBottomOf="@id/detail_tv_genderText"
-        android:layout_marginTop="10dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="10dp"
+        android:textSize="25sp"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="20dp"
+        app:layout_constraintLeft_toRightOf="@id/detail_tv_status"
+        android:layout_marginLeft="20dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -102,11 +64,10 @@
         android:id="@+id/detail_tv_url"
         tools:text="@tools:sample/full_names"
         android:textColor="@color/white"
-        android:textSize="23sp"
-        app:layout_constraintTop_toTopOf="@id/detail_tv_gender"
-        android:layout_marginTop="130dp"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/detail_iv"
+        android:layout_marginTop="60dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
 
@@ -114,13 +75,11 @@
         android:id="@+id/detail_tv_created"
         tools:text="@tools:sample/full_names"
         android:textColor="@color/white"
-        android:textSize="23sp"
-        app:layout_constraintTop_toTopOf="@id/detail_tv_gender"
-        android:layout_marginTop="190dp"
+        android:textSize="20sp"
+        app:layout_constraintTop_toBottomOf="@id/detail_tv_url"
+        android:layout_marginTop="20dp"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginLeft="10dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

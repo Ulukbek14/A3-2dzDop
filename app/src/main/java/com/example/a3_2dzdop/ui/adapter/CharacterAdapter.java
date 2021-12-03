@@ -1,6 +1,5 @@
 package com.example.a3_2dzdop.ui.adapter;
 
-import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 
 import android.view.ViewGroup;
@@ -12,19 +11,13 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.a3_2dzdop.databinding.ItemCharacterBinding;
-import com.example.a3_2dzdop.model.character.CharacterModel;
+import com.example.a3_2dzdop.data.network.dtos.character.CharacterModel;
 
-import java.util.ArrayList;
-import java.util.List;
+public class CharacterAdapter extends ListAdapter<CharacterModel, CharacterAdapter.CharactersViewHolder> {
 
-public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.CharactersViewHolder> {
-
-    private ArrayList<CharacterModel> list = new ArrayList<>();
     private OnItemClickListener listener;
-
-    public void addCharacter(List<CharacterModel> list) {
-        this.list.addAll(list);
-        notifyDataSetChanged();
+    public CharacterAdapter() {
+        super(new CharacterComparator());
     }
 
     @NonNull
@@ -36,47 +29,55 @@ public class CharacterAdapter extends RecyclerView.Adapter<CharacterAdapter.Char
 
     @Override
     public void onBindViewHolder(@NonNull CharactersViewHolder holder, int position) {
-        holder.characterFilling(list.get(position));
-    }
-
-    @Override
-    public int getItemCount() {
-        return list.size();
+        holder.characterFilling(getItem(position));
     }
 
     public class CharactersViewHolder extends RecyclerView.ViewHolder {
-        private ItemCharacterBinding binding;
+
+        public void characterFilling(CharacterModel characterModel) {
+            Glide.with(binding.itemIv).
+                    load(characterModel.getImage())
+                    .into(binding.itemIv);
+            binding.itemTvCharacterName.setText(characterModel.getName());
+            binding.itemTvCharacterStatus.setText(characterModel.getStatus());
+            binding.itemTvCharacterSpecies.setText(characterModel.getSpecies());
+            binding.itemTvCharacterGender.setText(characterModel.getGender());
+
+            binding.getRoot().setOnClickListener(v ->
+                    listener.
+                            onItemClick(characterModel.getId()));
+
+            binding.getRoot().setOnLongClickListener(v -> {
+                listener.
+                        onItemLongClick(characterModel.getId());
+                return false;
+            });
+        }
+
+        private final ItemCharacterBinding binding;
 
         public CharactersViewHolder(@NonNull ItemCharacterBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
+    }
 
-        public void characterFilling(CharacterModel characterModel) {
-            binding.itemTvCharacterName.setText(characterModel.getName());
-            binding.itemTvCharacterStatus.setText(characterModel.getStatus());
-            Glide
-                    .with(binding.itemIv)
-                    .load(characterModel.getImage())
-                    .into(binding.itemIv);
+    public static class CharacterComparator extends DiffUtil.ItemCallback<CharacterModel> {
 
-            binding.getRoot().
-                    setOnClickListener(v ->
-                            listener.onItemClick
-                                    (characterModel.getId()));
+        @Override
+        public boolean areItemsTheSame(@NonNull CharacterModel oldItem, @NonNull CharacterModel newItem) {
+            return oldItem.getId() == newItem.getId();
+        }
 
-            binding.getRoot().
-                    setOnLongClickListener(v -> {
-                        listener.onItemCharacterClick
-                                (characterModel.getId());
-                        return false;
-                    });
+        @Override
+        public boolean areContentsTheSame(@NonNull CharacterModel oldItem, @NonNull CharacterModel newItem) {
+            return oldItem.equals(newItem);
         }
     }
 
     public interface OnItemClickListener {
         void onItemClick(int id);
-        void onItemCharacterClick(int id);
+        void onItemLongClick(int id);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {

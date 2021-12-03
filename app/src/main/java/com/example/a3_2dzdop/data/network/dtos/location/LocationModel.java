@@ -1,6 +1,7 @@
-package com.example.a3_2dzdop.model.location;
+package com.example.a3_2dzdop.data.network.dtos.location;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.Objects;
 
 public class LocationModel {
 
@@ -16,6 +17,24 @@ public class LocationModel {
     private String url;
     @SerializedName("created")
     private String created;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LocationModel that =
+                (LocationModel) o;
+        return id == that.id &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(type, that.type) &&
+                Objects.equals(dimension, that.dimension) &&
+                Objects.equals(url, that.url) && Objects.equals(created, that.created);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, type, dimension, url, created);
+    }
 
     public String getUrl() {
         return url;

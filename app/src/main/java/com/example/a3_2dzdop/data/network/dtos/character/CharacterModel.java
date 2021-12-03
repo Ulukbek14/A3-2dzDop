@@ -1,8 +1,7 @@
-package com.example.a3_2dzdop.model.character;
+package com.example.a3_2dzdop.data.network.dtos.character;
 
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
+import java.util.Objects;
 
 public class CharacterModel {
 
@@ -20,6 +19,29 @@ public class CharacterModel {
     private String gender;
     @SerializedName("url")
     private String url;
+    @SerializedName("created")
+    private String created;
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CharacterModel that =
+                (CharacterModel) o;
+        return id == that.id &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(image, that.image) &&
+                Objects.equals(status, that.status) &&
+                Objects.equals(species, that.species) &&
+                Objects.equals(gender, that.gender) &&
+                Objects.equals(url, that.url) &&
+                Objects.equals(created, that.created);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, image, status, species, gender, url, created);
+    }
 
     public String getSpecies() {
         return species;
@@ -52,10 +74,6 @@ public class CharacterModel {
     public void setCreated(String created) {
         this.created = created;
     }
-
-    @SerializedName("created")
-    private String created;
-
 
     public String getStatus() {
         return status;

@@ -13,7 +13,8 @@ import com.example.a3_2dzdop.R;
 import com.example.a3_2dzdop.base.BaseFragment;
 import com.example.a3_2dzdop.databinding.FragmentLocationDetailBinding;
 
-public class LocationDetailFragment extends BaseFragment<LocationDetailViewModel, FragmentLocationDetailBinding> {
+public class LocationDetailFragment extends
+        BaseFragment<LocationDetailViewModel, FragmentLocationDetailBinding> {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,

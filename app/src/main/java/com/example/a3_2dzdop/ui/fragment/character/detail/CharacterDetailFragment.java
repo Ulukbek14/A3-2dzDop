@@ -15,7 +15,8 @@ import com.example.a3_2dzdop.R;
 import com.example.a3_2dzdop.base.BaseFragment;
 import com.example.a3_2dzdop.databinding.FragmentCharacterDetailBinding;
 
-public class CharacterDetailFragment extends BaseFragment<CharacterDetailViewModel, FragmentCharacterDetailBinding> {
+public class CharacterDetailFragment extends
+        BaseFragment<CharacterDetailViewModel, FragmentCharacterDetailBinding> {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
@@ -38,10 +39,8 @@ public class CharacterDetailFragment extends BaseFragment<CharacterDetailViewMod
             Glide.with(binding.detailIv)
                     .load(character.getImage())
                     .into(binding.detailIv);
-            binding.detailTvName.setText(character.getName());
             binding.detailTvStatus.setText(character.getStatus());
             binding.detailTvSpecies.setText(character.getSpecies());
-            binding.detailTvGender.setText(character.getGender());
             binding.detailTvUrl.setText(character.getUrl());
             binding.detailTvCreated.setText(character.getCreated());
         });

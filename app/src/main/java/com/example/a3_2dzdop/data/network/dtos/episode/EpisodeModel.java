@@ -1,6 +1,7 @@
-package com.example.a3_2dzdop.model.episode;
+package com.example.a3_2dzdop.data.network.dtos.episode;
 
 import com.google.gson.annotations.SerializedName;
+import java.util.Objects;
 
 public class EpisodeModel {
 
@@ -17,10 +18,28 @@ public class EpisodeModel {
     @SerializedName("created")
     private String created;
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EpisodeModel that =
+                (EpisodeModel) o;
+        return id == that.id &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(air_date, that.air_date) &&
+                Objects.equals(episode, that.episode) &&
+                Objects.equals(url, that.url) &&
+                Objects.equals(created, that.created);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, air_date, episode, url, created);
+    }
+
     public String getUrl() {
         return url;
     }
-
     public void setUrl(String url) {
         this.url = url;
     }
