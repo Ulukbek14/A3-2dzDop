@@ -23,21 +23,23 @@ public class LocationDetailFragment extends BaseFragment<LocationDetailViewModel
         return binding.getRoot();
     }
 
+    @Override
     protected void initialize() {
         viewModel = new ViewModelProvider(this).get(LocationDetailViewModel.class);
     }
 
+    @Override
     protected void setupRequest() {
         viewModel.fetchLocation(LocationDetailFragmentArgs.fromBundle(getArguments()).getId());
     }
 
+    @Override
     protected void setupObservers() {
         viewModel.fetchLocation(LocationDetailFragmentArgs.fromBundle(getArguments()).getId()).observe(getViewLifecycleOwner(), location -> {
             binding.detailTvName.setText(location.getName());
             binding.detailTvUrl.setText(location.getUrl());
             binding.detailTvCreated.setText(location.getCreated());
         });
-
     }
 
     @Override

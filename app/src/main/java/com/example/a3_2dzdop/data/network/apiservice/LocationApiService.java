@@ -15,6 +15,5 @@ public interface LocationApiService {
 
     @GET("/api/location/{id}")
     Call<LocationModel> fetchLocation(
-            @Path("id") int id
-    );
+            @Path("id") int id);
 }

@@ -15,7 +15,6 @@ import retrofit2.Response;
 public class EpisodeRepository {
 
     public LiveData<RickAndMortyResponse<EpisodeModel>> fetchEpisodes(int page) {
-
         MutableLiveData<RickAndMortyResponse<EpisodeModel>> data = new MutableLiveData<>();
         App.episodeApiService.fetchEpisodes(page).enqueue(new Callback<RickAndMortyResponse<EpisodeModel>>() {
             @Override
@@ -32,7 +31,6 @@ public class EpisodeRepository {
     }
 
     public LiveData<EpisodeModel> fetchEpisode(int id) {
-
         MutableLiveData<EpisodeModel> data = new MutableLiveData<>();
         App.episodeApiService.fetchEpisode(id).enqueue(new Callback<EpisodeModel>() {
             @Override

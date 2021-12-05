@@ -20,6 +20,7 @@ import java.util.List;
 public class EpisodeAdapter extends ListAdapter<EpisodeModel, EpisodeAdapter.EpisodeViewHolder> {
 
     private OnItemClickListener listener;
+
     public EpisodeAdapter() {
         super(new EpisodeComparator());
     }

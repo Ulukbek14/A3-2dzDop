@@ -11,6 +11,7 @@ import com.example.a3_2dzdop.data.network.dtos.character.CharacterModel;
 public class CharacterViewModel extends BaseViewModel {
 
     public int page = 1;
+
     private CharacterRepository characterRepository = new CharacterRepository();
     public MutableLiveData<Boolean> isCharacterLoading = new MutableLiveData<>();
 

@@ -20,6 +20,7 @@ import retrofit2.Response;
 public class CharacterDetailViewModel extends BaseViewModel {
 
     private CharacterRepository characterRepository = new CharacterRepository();
+
     public MutableLiveData<Boolean> isCharacterLoading = new MutableLiveData<>();
 
     public LiveData<CharacterModel> fetchCharacter(int id) {

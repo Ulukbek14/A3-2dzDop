@@ -18,6 +18,7 @@ public class LocationDetailViewModel extends BaseViewModel {
 
     private LocationRepository locationRepository = new LocationRepository();
 
+
     public LiveData<LocationModel> fetchLocation(int id) {
         return locationRepository.fetchLocation(id);
     }

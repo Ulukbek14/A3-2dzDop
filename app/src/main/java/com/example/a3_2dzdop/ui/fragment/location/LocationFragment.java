@@ -38,6 +38,7 @@ public class LocationFragment extends BaseFragment<LocationViewModel, FragmentLo
         return binding.getRoot();
     }
 
+    @Override
     protected void initialize() {
         viewModel = new ViewModelProvider(this).get(LocationViewModel.class);
         setupEpisodeRecycler();
@@ -82,6 +83,7 @@ public class LocationFragment extends BaseFragment<LocationViewModel, FragmentLo
         binding.rvLocation.setAdapter(adapter);
     }
 
+    @Override
     protected void setupObservers() {
         viewModel.fetchLocation().observe(getViewLifecycleOwner(), episodes -> {
             adapter.submitList(episodes.getResults());

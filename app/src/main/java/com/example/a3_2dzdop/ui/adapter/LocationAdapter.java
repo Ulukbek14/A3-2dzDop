@@ -17,6 +17,7 @@ import java.util.List;
 public class LocationAdapter extends ListAdapter<LocationModel, LocationAdapter.LocationViewHolder> {
 
     private OnItemClickListener listener;
+
     public LocationAdapter() {
         super(new LocationComparator());
     }

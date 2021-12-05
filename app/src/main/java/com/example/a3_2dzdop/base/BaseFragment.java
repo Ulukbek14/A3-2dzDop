@@ -9,7 +9,7 @@ import androidx.viewbinding.ViewBinding;
 
 import org.jetbrains.annotations.NotNull;
 
-public abstract class BaseFragment<ViewModel extends BaseViewModel, Binding extends ViewBinding> extends Fragment {
+public abstract class BaseFragment<ViewModel extends BaseViewModel, Binding extends ViewBinding> extends Fragment{
 
     protected ViewModel viewModel;
     protected Binding binding;
@@ -23,11 +23,15 @@ public abstract class BaseFragment<ViewModel extends BaseViewModel, Binding exte
         setupNavigation();
     }
 
-    protected void initialize(){}
+    protected void initialize(){
+    }
 
-    protected void setupRequest(){}
+    protected void setupRequest(){
+    }
 
-    protected void setupObservers(){}
+    protected void setupObservers(){
+    }
 
-    protected void setupNavigation(){}
+    protected void setupNavigation(){
+    }
 }

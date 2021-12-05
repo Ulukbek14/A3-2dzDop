@@ -30,10 +30,12 @@ public class EpisodeDetailFragment extends BaseFragment<EpisodeDetailViewModel, 
         viewModel.fetchEpisode(EpisodeDetailFragmentArgs.fromBundle(getArguments()).getId());
     }
 
+    @Override
     protected void initialize() {
         viewModel = new ViewModelProvider(this).get(EpisodeDetailViewModel.class);
     }
 
+    @Override
     protected void setupObservers() {
         viewModel.fetchEpisode(EpisodeDetailFragmentArgs.fromBundle(getArguments()).getId()).observe(getViewLifecycleOwner(), episode -> {
             binding.detailTvName.setText(episode.getName());;

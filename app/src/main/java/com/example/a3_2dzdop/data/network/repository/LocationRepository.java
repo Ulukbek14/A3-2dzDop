@@ -15,7 +15,6 @@ import retrofit2.Response;
 public class LocationRepository {
 
     public LiveData<RickAndMortyResponse<LocationModel>> fetchLocations(int page) {
-
         MutableLiveData<RickAndMortyResponse<LocationModel>> data = new MutableLiveData<>();
         App.locationApiService.fetchLocations(page).enqueue(new Callback<RickAndMortyResponse<LocationModel>>() {
             @Override
@@ -32,7 +31,6 @@ public class LocationRepository {
     }
 
     public LiveData<LocationModel> fetchLocation(int id) {
-
         MutableLiveData<LocationModel> data = new MutableLiveData<>();
         App.locationApiService.fetchLocation(id).enqueue(new Callback<LocationModel>() {
             @Override

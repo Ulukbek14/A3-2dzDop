@@ -15,6 +15,5 @@ public interface EpisodeApiService {
 
     @GET("/api/episode/{id}")
     Call<EpisodeModel> fetchEpisode(
-            @Path("id") int id
-    );
+            @Path("id") int id);
 }

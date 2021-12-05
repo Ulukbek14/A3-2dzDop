@@ -20,6 +20,7 @@ public class RetrofitClient {
             .writeTimeout(30, TimeUnit.SECONDS)
             .build();
 
+
     private HttpLoggingInterceptor provideLoggingInterceptor() {
         return new HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY);
     }

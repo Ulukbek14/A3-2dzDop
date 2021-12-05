@@ -33,6 +33,7 @@ public class EpisodeFragment extends BaseFragment<EpisodeViewModel, FragmentEpis
         return binding.getRoot();
     }
 
+    @Override
     protected void initialize() {
         viewModel = new ViewModelProvider(this).get(EpisodeViewModel.class);
         setupEpisodeRecycler();
@@ -77,6 +78,7 @@ public class EpisodeFragment extends BaseFragment<EpisodeViewModel, FragmentEpis
         binding.rvEpisode.setAdapter(adapter);
     }
 
+    @Override
     protected void setupObservers() {
         viewModel.fetchEpisodes().observe(getViewLifecycleOwner(), episode -> {
             adapter.submitList(episode.getResults());

@@ -7,20 +7,28 @@ public class CharacterModel {
 
     @SerializedName("id")
     private int id;
+
     @SerializedName("name")
     private String name;
+
     @SerializedName("image")
     private String image;
+
     @SerializedName("status")
     private String status;
+
     @SerializedName("species")
     private String species;
+
     @SerializedName("gender")
     private String gender;
+
     @SerializedName("url")
     private String url;
+
     @SerializedName("created")
     private String created;
+
 
     public String getSpecies() {
         return species;

@@ -16,6 +16,7 @@ import com.example.a3_2dzdop.data.network.dtos.character.CharacterModel;
 public class CharacterAdapter extends ListAdapter<CharacterModel, CharacterAdapter.CharactersViewHolder> {
 
     private OnItemClickListener listener;
+
     public CharacterAdapter() {
         super(new CharacterComparator());
     }

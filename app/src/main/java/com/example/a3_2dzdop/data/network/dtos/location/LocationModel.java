@@ -7,14 +7,19 @@ public class LocationModel {
 
     @SerializedName("id")
     private int id;
+
     @SerializedName("name")
     private String name;
+
     @SerializedName("type")
     private String type;
+
     @SerializedName("dimension")
     private String dimension;
+
     @SerializedName("url")
     private String url;
+
     @SerializedName("created")
     private String created;
 

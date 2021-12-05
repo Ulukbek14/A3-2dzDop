@@ -31,11 +31,13 @@ public class CharacterFragment extends BaseFragment<CharacterViewModel, Fragment
         return binding.getRoot();
     }
 
+    @Override
     protected void initialize() {
         viewModel = new ViewModelProvider(this).get(CharacterViewModel.class);
         setupCharactersRecycler();
     }
 
+    @Override
     protected void setupNavigation() {
         adapter.setOnItemClickListener(new CharacterAdapter.OnItemClickListener() {
             @Override
@@ -77,6 +79,7 @@ public class CharacterFragment extends BaseFragment<CharacterViewModel, Fragment
         });
     }
 
+    @Override
     protected void setupObservers() {
         viewModel.fetchCharacters().observe(getViewLifecycleOwner(), characters -> {
             adapter.submitList(characters.getResults());

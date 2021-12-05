@@ -16,6 +16,7 @@ public class EpisodeDetailViewModel extends BaseViewModel {
 
     private EpisodeRepository episodeRepository = new EpisodeRepository();
 
+
     public LiveData<EpisodeModel> fetchEpisode(int id) {
         return episodeRepository.fetchEpisode(id);
     }

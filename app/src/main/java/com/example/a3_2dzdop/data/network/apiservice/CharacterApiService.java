@@ -15,6 +15,5 @@ public interface CharacterApiService {
 
     @GET("/api/character/{id}")
     Call<CharacterModel> fetchCharacter(
-            @Path("id") int id
-    );
+            @Path("id") int id);
 }

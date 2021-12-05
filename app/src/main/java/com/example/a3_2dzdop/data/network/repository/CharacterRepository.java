@@ -14,7 +14,6 @@ import retrofit2.Response;
 public class CharacterRepository {
 
     public LiveData<RickAndMortyResponse<CharacterModel>> fetchCharacters(int page) {
-
         MutableLiveData<RickAndMortyResponse<CharacterModel>> data = new MutableLiveData<>();
         App.characterApiService.fetchCharacters(page).enqueue(new Callback<RickAndMortyResponse<CharacterModel>>() {
             @Override
@@ -31,7 +30,6 @@ public class CharacterRepository {
     }
 
     public LiveData<CharacterModel> fetchCharacter(int id) {
-
         MutableLiveData<CharacterModel> data = new MutableLiveData<>();
         App.characterApiService.fetchCharacter(id).enqueue(new Callback<CharacterModel>() {
             @Override
