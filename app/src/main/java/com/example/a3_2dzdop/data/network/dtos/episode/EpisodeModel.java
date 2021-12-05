@@ -18,25 +18,6 @@ public class EpisodeModel {
     @SerializedName("created")
     private String created;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        EpisodeModel that =
-                (EpisodeModel) o;
-        return id == that.id &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(air_date, that.air_date) &&
-                Objects.equals(episode, that.episode) &&
-                Objects.equals(url, that.url) &&
-                Objects.equals(created, that.created);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, air_date, episode, url, created);
-    }
-
     public String getUrl() {
         return url;
     }
@@ -83,5 +64,24 @@ public class EpisodeModel {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        EpisodeModel that =
+                (EpisodeModel) o;
+        return id == that.id &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(air_date, that.air_date) &&
+                Objects.equals(episode, that.episode) &&
+                Objects.equals(url, that.url) &&
+                Objects.equals(created, that.created);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, air_date, episode, url, created);
     }
 }

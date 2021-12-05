@@ -22,27 +22,6 @@ public class CharacterModel {
     @SerializedName("created")
     private String created;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CharacterModel that =
-                (CharacterModel) o;
-        return id == that.id &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(image, that.image) &&
-                Objects.equals(status, that.status) &&
-                Objects.equals(species, that.species) &&
-                Objects.equals(gender, that.gender) &&
-                Objects.equals(url, that.url) &&
-                Objects.equals(created, that.created);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, image, status, species, gender, url, created);
-    }
-
     public String getSpecies() {
         return species;
     }
@@ -105,5 +84,26 @@ public class CharacterModel {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CharacterModel that =
+                (CharacterModel) o;
+        return id == that.id &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(image, that.image) &&
+                Objects.equals(status, that.status) &&
+                Objects.equals(species, that.species) &&
+                Objects.equals(gender, that.gender) &&
+                Objects.equals(url, that.url) &&
+                Objects.equals(created, that.created);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, image, status, species, gender, url, created);
     }
 }

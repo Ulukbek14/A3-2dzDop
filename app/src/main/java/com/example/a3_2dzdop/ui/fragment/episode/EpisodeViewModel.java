@@ -12,7 +12,7 @@ import com.example.a3_2dzdop.data.network.dtos.episode.EpisodeModel;
 
 public class EpisodeViewModel extends BaseViewModel {
 
-    public int page;
+    public int page = 1;
     private EpisodeRepository episodeRepository = new EpisodeRepository();
     public MutableLiveData<Boolean> isEpisodeLoading = new MutableLiveData<>();
 

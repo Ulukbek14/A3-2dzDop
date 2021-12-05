@@ -18,24 +18,6 @@ public class LocationModel {
     @SerializedName("created")
     private String created;
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        LocationModel that =
-                (LocationModel) o;
-        return id == that.id &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(type, that.type) &&
-                Objects.equals(dimension, that.dimension) &&
-                Objects.equals(url, that.url) && Objects.equals(created, that.created);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, type, dimension, url, created);
-    }
-
     public String getUrl() {
         return url;
     }
@@ -82,5 +64,23 @@ public class LocationModel {
 
     public void setDimension(String dimension) {
         this.dimension = dimension;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        LocationModel that =
+                (LocationModel) o;
+        return id == that.id &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(type, that.type) &&
+                Objects.equals(dimension, that.dimension) &&
+                Objects.equals(url, that.url) && Objects.equals(created, that.created);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, type, dimension, url, created);
     }
 }

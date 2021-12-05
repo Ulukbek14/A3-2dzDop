@@ -43,9 +43,9 @@ public class CharacterAdapter extends ListAdapter<CharacterModel, CharacterAdapt
             binding.itemTvCharacterSpecies.setText(characterModel.getSpecies());
             binding.itemTvCharacterGender.setText(characterModel.getGender());
 
-            binding.getRoot().setOnClickListener(v ->
-                    listener.
-                            onItemClick(characterModel.getId()));
+            binding.getRoot().setOnClickListener(v -> {
+                listener.onItemClick(characterModel.getId());
+            });
 
             binding.getRoot().setOnLongClickListener(v -> {
                 listener.

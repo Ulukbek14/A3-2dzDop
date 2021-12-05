@@ -10,7 +10,7 @@ import com.example.a3_2dzdop.data.network.dtos.location.LocationModel;
 
 public class LocationViewModel extends BaseViewModel {
 
-    public int page;
+    public int page = 1;
     private LocationRepository locationRepository = new LocationRepository();
     public MutableLiveData<Boolean> isLocationLoading = new MutableLiveData<>();
 

@@ -83,4 +83,10 @@ public class EpisodeFragment extends BaseFragment<EpisodeViewModel, FragmentEpis
             onScrollPagination();
         });
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

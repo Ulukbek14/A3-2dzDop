@@ -2,6 +2,7 @@ package com.example.a3_2dzdop.ui.fragment.location.detail;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -13,11 +14,10 @@ import com.example.a3_2dzdop.R;
 import com.example.a3_2dzdop.base.BaseFragment;
 import com.example.a3_2dzdop.databinding.FragmentLocationDetailBinding;
 
-public class LocationDetailFragment extends
-        BaseFragment<LocationDetailViewModel, FragmentLocationDetailBinding> {
+public class LocationDetailFragment extends BaseFragment<LocationDetailViewModel, FragmentLocationDetailBinding> {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentLocationDetailBinding.inflate(inflater, container, false);
         return binding.getRoot();
@@ -28,14 +28,21 @@ public class LocationDetailFragment extends
     }
 
     protected void setupRequest() {
-        viewModel.fetchEpisode(LocationDetailFragmentArgs.fromBundle(getArguments()).getId());
+        viewModel.fetchLocation(LocationDetailFragmentArgs.fromBundle(getArguments()).getId());
     }
 
     protected void setupObservers() {
-        viewModel.location.observe(getViewLifecycleOwner(), location -> {
+        viewModel.fetchLocation(LocationDetailFragmentArgs.fromBundle(getArguments()).getId()).observe(getViewLifecycleOwner(), location -> {
             binding.detailTvName.setText(location.getName());
             binding.detailTvUrl.setText(location.getUrl());
             binding.detailTvCreated.setText(location.getCreated());
         });
+
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

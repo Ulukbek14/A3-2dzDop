@@ -15,7 +15,6 @@ import com.example.a3_2dzdop.base.BaseFragment;
 import com.example.a3_2dzdop.data.network.dtos.character.CharacterModel;
 import com.example.a3_2dzdop.databinding.FragmentCharacterBinding;
 import com.example.a3_2dzdop.ui.adapter.CharacterAdapter;
-import com.example.a3_2dzdop.ui.fragment.character.dialog.DialogCharacterFragment;
 
 import java.util.ArrayList;
 
@@ -41,15 +40,15 @@ public class CharacterFragment extends BaseFragment<CharacterViewModel, Fragment
         adapter.setOnItemClickListener(new CharacterAdapter.OnItemClickListener() {
             @Override
             public void onItemClick(int id) {
-                Navigation.
-                        findNavController(requireView()).
-                        navigate(CharacterFragmentDirections.
-                                actionNavigationCharactersToDetailFragment(id)
-                );
+                Navigation.findNavController(requireView()).navigate(
+                        CharacterFragmentDirections.actionNavigationCharactersToDetailFragment(id));
             }
 
             @Override
             public void onItemLongClick(int id) {
+                Navigation.findNavController(requireView()).navigate(
+                        CharacterFragmentDirections.actionNavigationCharactersToDialogFragment(id)
+                );
             }
         });
     }
@@ -89,5 +88,12 @@ public class CharacterFragment extends BaseFragment<CharacterViewModel, Fragment
         characterLayout = new LinearLayoutManager(getContext());
         binding.rvCharacter.setLayoutManager(characterLayout);
         binding.rvCharacter.setAdapter(adapter);
+    }
+
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

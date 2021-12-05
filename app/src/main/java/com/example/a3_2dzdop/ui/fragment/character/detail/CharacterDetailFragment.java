@@ -33,9 +33,9 @@ public class CharacterDetailFragment extends
         viewModel.fetchCharacter(CharacterDetailFragmentArgs.fromBundle(getArguments()).getId());
     }
 
-    @Override
     protected void setupObservers() {
-        viewModel.character.observe(getViewLifecycleOwner(), character -> {
+        viewModel.fetchCharacter(CharacterDetailFragmentArgs.fromBundle(getArguments()).getId()).observe(getViewLifecycleOwner(), character -> {
+            viewModel.isCharacterLoading.setValue(true);
             Glide.with(binding.detailIv)
                     .load(character.getImage())
                     .into(binding.detailIv);
@@ -44,5 +44,11 @@ public class CharacterDetailFragment extends
             binding.detailTvUrl.setText(character.getUrl());
             binding.detailTvCreated.setText(character.getCreated());
         });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

@@ -31,7 +31,8 @@ public class MainActivity extends AppCompatActivity {
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(
                 R.id.navigation_character,
                 R.id.navigation_episode,
-                R.id.navigation_location
+                R.id.navigation_location,
+                R.id.dialogFragment
         ).build();
 
         NavigationUI.setupWithNavController(binding.toolbar, navController, appBarConfiguration);

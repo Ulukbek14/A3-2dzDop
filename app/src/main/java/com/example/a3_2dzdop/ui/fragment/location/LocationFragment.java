@@ -89,4 +89,10 @@ public class LocationFragment extends BaseFragment<LocationViewModel, FragmentLo
 
         });
     }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
+    }
 }

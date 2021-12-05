@@ -2,6 +2,7 @@ package com.example.a3_2dzdop.ui.fragment.episode.detail;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -15,29 +16,35 @@ import com.example.a3_2dzdop.base.BaseFragment;
 import com.example.a3_2dzdop.databinding.FragmentEpisodeBinding;
 import com.example.a3_2dzdop.databinding.FragmentEpisodeDetailBinding;
 
-public class EpisodeDetailFragment extends
-        BaseFragment<EpisodeDetailViewModel, FragmentEpisodeDetailBinding> {
+public class EpisodeDetailFragment extends BaseFragment<EpisodeDetailViewModel, FragmentEpisodeDetailBinding> {
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         binding = FragmentEpisodeDetailBinding.inflate(inflater, container, false);
         return binding.getRoot();
+    }
+
+    @Override
+    protected void setupRequest() {
+        viewModel.fetchEpisode(EpisodeDetailFragmentArgs.fromBundle(getArguments()).getId());
     }
 
     protected void initialize() {
         viewModel = new ViewModelProvider(this).get(EpisodeDetailViewModel.class);
     }
 
-    protected void setupRequest() {
-        viewModel.fetchEpisode(EpisodeDetailFragmentArgs.fromBundle(getArguments()).getId());
-    }
-
     protected void setupObservers() {
-        viewModel.episode.observe(getViewLifecycleOwner(),episode ->{
-            binding.detailTvName.setText(episode.getName());
+        viewModel.fetchEpisode(EpisodeDetailFragmentArgs.fromBundle(getArguments()).getId()).observe(getViewLifecycleOwner(), episode -> {
+            binding.detailTvName.setText(episode.getName());;
             binding.detailTvUrl.setText(episode.getUrl());
             binding.detailTvCreated.setText(episode.getCreated());
-        } );
+        });
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        binding = null;
     }
 }

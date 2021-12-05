@@ -5,7 +5,13 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.example.a3_2dzdop.App;
 import com.example.a3_2dzdop.base.BaseViewModel;
+import com.example.a3_2dzdop.data.network.dtos.RickAndMortyResponse;
 import com.example.a3_2dzdop.data.network.dtos.character.CharacterModel;
+import com.example.a3_2dzdop.data.network.dtos.episode.EpisodeModel;
+import com.example.a3_2dzdop.data.network.dtos.location.LocationModel;
+import com.example.a3_2dzdop.data.network.repository.CharacterRepository;
+import com.example.a3_2dzdop.data.network.repository.EpisodeRepository;
+import com.example.a3_2dzdop.data.network.repository.LocationRepository;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -13,20 +19,11 @@ import retrofit2.Response;
 
 public class CharacterDetailViewModel extends BaseViewModel {
 
-    private MutableLiveData<CharacterModel> _character = new MutableLiveData<>();
-    public LiveData<CharacterModel> character = _character;
+    private CharacterRepository characterRepository = new CharacterRepository();
+    public MutableLiveData<Boolean> isCharacterLoading = new MutableLiveData<>();
 
-    public void fetchCharacter( int id) {
-        App.characterApiService.fetchCharacter(id).enqueue(new Callback<CharacterModel>() {
-            @Override
-            public void onResponse(Call<CharacterModel> call, Response<CharacterModel> response) {
-                _character.setValue(response.body());
-            }
-
-            @Override
-            public void onFailure(Call<CharacterModel> call, Throwable t) {
-                _character.setValue(null);
-            }
-        });
+    public LiveData<CharacterModel> fetchCharacter(int id) {
+        isCharacterLoading.setValue(true);
+        return characterRepository.fetchCharacter(id);
     }
 }
