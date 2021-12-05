@@ -69,7 +69,7 @@
         android:label=""
         tools:layout="@layout/fragment_dialog" >
         <argument
-            android:name="id"
+            android:name="image"
             app:argType="integer"/>
     </dialog>
 

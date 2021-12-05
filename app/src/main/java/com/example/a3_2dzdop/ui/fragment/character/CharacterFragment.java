@@ -45,9 +45,9 @@ public class CharacterFragment extends BaseFragment<CharacterViewModel, Fragment
             }
 
             @Override
-            public void onItemLongClick(int id) {
+            public void onItemLongClick(int image) {
                 Navigation.findNavController(requireView()).navigate(
-                        CharacterFragmentDirections.actionNavigationCharactersToDialogFragment(id)
+                        CharacterFragmentDirections.actionNavigationCharactersToDialogFragment(image)
                 );
             }
         });

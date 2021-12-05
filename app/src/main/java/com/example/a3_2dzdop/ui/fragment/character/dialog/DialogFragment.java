@@ -38,7 +38,7 @@ public class DialogFragment extends androidx.fragment.app.DialogFragment {
     }
 
     private void setupObservers() {
-        viewModel.fetchCharacter(DialogFragmentArgs.fromBundle(getArguments()).getId()).observe(getViewLifecycleOwner(), character ->
+        viewModel.fetchCharacter(DialogFragmentArgs.fromBundle(getArguments()).getImage()).observe(getViewLifecycleOwner(), character ->
                 Glide.with(binding.dialogImage)
                         .load(character.getImage())
                         .into(binding.dialogImage));

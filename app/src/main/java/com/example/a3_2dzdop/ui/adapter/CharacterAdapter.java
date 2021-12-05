@@ -77,7 +77,7 @@ public class CharacterAdapter extends ListAdapter<CharacterModel, CharacterAdapt
 
     public interface OnItemClickListener {
         void onItemClick(int id);
-        void onItemLongClick(int id);
+        void onItemLongClick(int image);
     }
 
     public void setOnItemClickListener(OnItemClickListener listener) {
